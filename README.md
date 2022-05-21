@@ -1,2 +1,2 @@
 # Leetcode solutions
-* "Who" <shodydosh@gmail.com>
+* "Wh0" <shodydosh@gmail.com>
