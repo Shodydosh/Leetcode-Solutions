@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int maxCoins(vector<int>& piles) {
+        sort(piles.begin(), piles.end());
+        int ans = 0;
+        for(int i=piles.size()/3; i<piles.size(); i++){
+            if((piles.size()/3)%2 == 1){
+                if(i%2==1) ans += piles[i];
+            }
+            else if(i%2==0) ans += piles[i];
+        }
+        return ans;
+    }
+};
