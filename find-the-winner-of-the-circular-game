@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int findTheWinner(int n, int k) {
+        deque<int> a;
+        for(int i=1; i<=n; i++) a.push_back(i);
+        for(int i=1; a.size()!=1; i++){
+            if(i % k == 0){
+                a.pop_front();
+            }
+            else{
+                int tmp = a.front();
+                a.pop_front();
+                a.push_back(tmp);
+            }
+        }
+        return a.front();
+    }
+};
