@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int Pow(int n){
+        int ans = 1;
+        while(n--) ans *= 26;
+        return ans;
+    }
+    
+    int titleToNumber(string columnTitle) {
+        int a = 'A'-1;
+        int res = 0;
+        for(int i=0; i<columnTitle.length(); i++){
+            res += (columnTitle[i]-a) * Pow(columnTitle.length()-1-i);
+        }
+        return res;
+    }
+};
