@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+        if(n < 0) return false;
+        
+        long long pwr = 1;
+        while(pwr < n){
+            pwr *= 3;
+        }
+        
+        return pwr == n;
+    }
+};
