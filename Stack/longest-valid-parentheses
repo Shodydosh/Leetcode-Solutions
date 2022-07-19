@@ -1,1 +1,32 @@
-//123
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        
+        stack<int> st;
+        st.push(-1);
+        int ans = 0;
+        
+        for(int i=0; i<s.size(); i++){
+            
+            // neu la ( hoac stack rong
+            if(st.top() == -1 || s[i] == '(')
+                st.push(i);
+            
+            // neu la )
+            else{
+                
+                if(s[st.top()] == '('){
+                    st.pop();
+                    
+                    ans = max(ans, i-st.top());
+                    // st.top() la index cua index lam moc
+                }
+                else
+                    st.push(i);
+            }
+            
+        }
+        
+        return ans;
+    }
+};
