@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int surfaceArea(vector<vector<int>>& grid) {
+        
+        int area = grid.size() * grid[0].size() * 2;
+        
+        for(int i=0; i<grid.size(); i++){
+            for(int j=0; j<grid[0].size(); j++){
+                if(grid[i][j] == 0){
+                    area -= 2;
+                }
+            }
+        }
+        
+        int insideArea = 0;
+        for(int i=0; i<grid.size(); i++){
+            for(int j=0; j<grid[i].size(); j++){
+                if(j < grid[i].size()-1){
+                    insideArea += abs(grid[i][j]-grid[i][j+1]);                    
+                }
+                if(i < grid.size()-1){
+                    insideArea += abs(grid[i][j]-grid[i+1][j]);                    
+                }
+            }
+        }
+        area += insideArea;
+        int outsideArea = 0;
+        
+        if(grid.size() == 1){
+            outsideArea = 4 * grid[0][0];
+        }
+        else{
+            outsideArea += 2 * (grid[0][0] + grid[0][grid[0].size()-1]);
+            outsideArea += 2 * (grid[grid.size()-1][grid[0].size()-1] + grid[grid.size()-1][0]);
+
+            for(int i=1; i<grid[0].size()-1; i++){
+                outsideArea += grid[0][i];
+            }
+            for(int i=1; i<grid[grid.size()-1].size()-1; i++){
+                outsideArea += grid[grid.size()-1][i];
+            }
+            for(int i=1; i<grid.size()-1; i++){
+                outsideArea += grid[i][0];
+            }
+            for(int i=1; i<grid.size()-1; i++){
+                outsideArea += grid[i][grid[0].size()-1];
+            }
+        }
+        
+        return area + outsideArea;
+    }
+};
