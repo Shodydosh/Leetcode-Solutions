@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int solve(int n, vector<int> &sq){
+        
+        if(n == 0){
+            return 0;
+        }
+        
+        // neu so do la so chinh phuong thi return 1 
+        if(sq[n] != -1) return sq[n];
+        
+        int val = 1000;
+        
+        for(int i=1; i<=sqrt(n); i++){
+            val = min(val, 1 + solve(n-i*i, sq));
+        }
+        
+        return sq[n] = val;
+    }
+    int numSquares(int n) {
+        // tao 1 vector luu n-1 so
+        // set initial value la -1
+        vector<int> sq(n+1, -1);
+        
+        for(int i=1; i<=sqrt(n); i++){
+            // set value cac so co index la so cp thanh 1
+            sq[i*i] = 1;
+        }
+        
+        return solve(n, sq);
+    }
+};
