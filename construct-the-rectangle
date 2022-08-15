@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> constructRectangle(int area){
+        
+        // ceil() will find the first int which is greater than the given one.
+        vector<int> ans;
+        long long sr = sqrt(area);
+
+        //case 1, if area is a perfect number.
+        if( sr * sr == area){
+            ans.push_back(sr);
+            ans.push_back(sr);
+            return ans;
+        } 
+
+        //case2. if area is not a perfect number. 
+        //we divide area by ceil(sr) to find Length and width.
+        while(sr>=0&&area%(int)ceil(sr)!=0)
+        {
+            sr--;
+        }
+        ans.push_back(ceil(sr));
+        ans.push_back(area/ceil(sr));
+        
+        //sort the vector.
+        sort(ans.begin(),ans.end(),greater<int>());
+        return ans;
+    }
+};
