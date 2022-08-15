@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maxCount(int m, int n, vector<vector<int>>& ops) {
+        
+        int minX, minY;
+        minX = INT_MAX;
+        minY = INT_MAX;
+        
+        for(int i=0; i<ops.size(); i++){
+            if(ops[i][0] < minX) minX = ops[i][0];
+            if(ops[i][1] < minY) minY = ops[i][1];
+        }
+        
+        if(minX > m) minX = m;
+        if(minY > n) minY = n;
+        
+        return minX * minY;
+    }
+};
