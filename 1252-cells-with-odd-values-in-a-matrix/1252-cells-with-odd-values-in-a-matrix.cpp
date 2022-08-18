@@ -1,38 +1,35 @@
-class Solution {
+class Solution
+{
 public:
-    int oddCells(int m, int n, vector<vector<int>>& indices) {
-        int matrix[m][n];
-        
-        for(int i=0; i<m; i++){
-            for(int j=0; j<n; j++){
-                matrix[i][j] = 0;
-            }
-        }
-        
-        int ans = 0;
-        
-        for(int z = 0; z < indices.size(); z++){
-            // cout << indices[z][0] << '-' << indices[z][1] << endl;
-            
-            //vertical  
-            for(int i=0; i<m; i++){
-                // 
-                matrix[i][indices[z][1]] ++;
-                if (matrix[i][indices[z][1]] % 2 == 1) ans++;
-                else ans--;
-            }
-            
-            //horizontal
-            for(int i=0; i<n; i++){
-                matrix[indices[z][0]][i] ++;
-                if (matrix[indices[z][0]][i] % 2 == 1) ans++;
-                else ans--;
-            }
-            
-            // cout << ans << endl;
+    int oddCells(int m, int n, vector<vector<int>> &indices)
+    {
+        vector<vector<int>> v(m, vector<int>(n, 0));
 
+        for (int i = 0; i < indices.size(); i++)
+        {
+            int row = indices[i][0];
+            int col = indices[i][1];
+
+            for (int i = 0; i < m; i++)
+            {
+                v[i][col]++;
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                v[row][i]++;
+            }
         }
-        
-        return ans;
+        int res = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (v[i][j] % 2 != 0)
+                    res++;
+            }
+        }
+
+        return res;
     }
 };
