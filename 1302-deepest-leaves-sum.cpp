@@ -11,25 +11,19 @@
  */
 class Solution {
 public:
-    int ans = 0;
-
     int handleTreeHeight(TreeNode* root){
         if(root == NULL) return 0;
         return 1 + max(handleTreeHeight(root->left), handleTreeHeight(root->right));
     }
 
-    void cal(TreeNode* root, int h, int maxh) {
-        if(root == NULL) return;
-        h+=1;
-        if(h == maxh) ans += root->val;
-
-        cal(root->right, h, maxh);
-        cal(root->left, h, maxh);
+    int cal(TreeNode* root, int h, int maxh) {
+        if(root == NULL) return 0;
+        if(++h == maxh) return root->val;
+        return cal(root->right, h, maxh) + cal(root->left, h, maxh);
     }
 
     int deepestLeavesSum(TreeNode* root) {
         int maxh = handleTreeHeight(root);
-        cal(root, 0, maxh);
-        return ans;
+        return cal(root, 0, maxh);
     }
 };
